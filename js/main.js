@@ -50,24 +50,21 @@ console.log(domItem);
 
 //aggiungiamo eventi on click sulle frecce
 prev.addEventListener('click', function(){
-    console.log("prev");
-    if(currentItem > 0){
-        domItem[currentItem].classList.remove('active');
-
-        currentItem--;
-
-        domItem[currentItem].classList.add('active');
-    }
+    console.log(currentItem);
+    domItem[currentItem].classList.remove('active');
+    
+    // Incrementa currentItem e controlla il modulo per il ciclo circolare
+    currentItem = (currentItem - 1 + domItem.length) % domItem.length;
+    
+    domItem[currentItem].classList.add('active');
 })
 
 next.addEventListener('click', function(){
     console.log(currentItem);
-    if(currentItem < domItem.length -1){
-        domItem[currentItem].classList.remove('active');
-
-        currentItem++;
-
-        domItem[currentItem].classList.add('active');
-    }
-   
-})
+    domItem[currentItem].classList.remove('active');
+    
+    // Incrementa currentItem e controlla il modulo per il ciclo circolare
+    currentItem = (currentItem + 1) % domItem.length;
+    
+    domItem[currentItem].classList.add('active');
+});
